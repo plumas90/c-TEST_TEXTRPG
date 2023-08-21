@@ -7,6 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 internal class Program
 {
+    int a;
     static Dictionary<int, Item> inventory = new Dictionary<int, Item>();
     static Dictionary<int, Item> shop = new Dictionary<int, Item>();
     private static Character player;   
