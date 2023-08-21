@@ -7,15 +7,14 @@ using static System.Net.Mime.MediaTypeNames;
 
 internal class Program
 {
-    int a;
     static Dictionary<int, Item> inventory = new Dictionary<int, Item>();
     static Dictionary<int, Item> shop = new Dictionary<int, Item>();
-    private static Character player;   
-    public enum ItemType 
+    private static Character player;
+    public enum ItemType
     {
         weapon = 1,
         head,
-        body 
+        body
     }
     public enum ItemPlace
     {
@@ -24,18 +23,18 @@ internal class Program
     }
     static void Main(string[] args)
     {                                       //공 방 체
-        Item item1 = new Item("낡은 검", 2, 0, 0, (int)ItemType.weapon, "Atk +2", "칼이라기 보단 몽둥이에 가까운 검", (int)ItemPlace.inventory,10);
-        Item item2 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.body, "Def +5", "무쇠로 만들어져 튼튼한 갑옷", (int)ItemPlace.inventory,10);
-        Item item3 = new Item("투구", 0, 0, 0, (int)ItemType.head, "Def +5", "그냥 흔한 투구", (int)ItemPlace.shop,50);
-        Item item4 = new Item("버거운 중갑", 0, 30, -30, (int)ItemType.body, "Def +50  Hp-30", "그 갑옷은 갑옷이라기엔 너무 커다랬다", (int)ItemPlace.shop,50);
-        Item item5 = new Item("돌(투구)", 0, 20, -20, (int)ItemType.head, "Def +20  Hp-20", "예산을 지키는 탁월한 방법.", (int)ItemPlace.shop,50);
-        Item item6 = new Item("가죽 갑옷", 10, 5, 0, (int)ItemType.body, "Atk +10  Def +5", "방어력과 경량화의 균형.", (int)ItemPlace.shop,50);
-        Item item7 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.weapon, "Def +5", "칼2", (int)ItemPlace.shop,50);
-        Item item8 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.weapon, "Def +5", "칼3", (int)ItemPlace.shop,50);
-        Item item9 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.weapon, "Def +5", "칼4", (int)ItemPlace.shop,50);
+        Item item1 = new Item("낡은 검", 2, 0, 0, (int)ItemType.weapon, "Atk +2", "칼이라기 보단 몽둥이에 가까운 검", (int)ItemPlace.inventory, 10);
+        Item item2 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.body, "Def +5", "무쇠로 만들어져 튼튼한 갑옷", (int)ItemPlace.inventory, 10);
+        Item item3 = new Item("투구", 0, 0, 0, (int)ItemType.head, "Def +5", "그냥 흔한 투구", (int)ItemPlace.shop, 50);
+        Item item4 = new Item("버거운 중갑", 0, 30, -30, (int)ItemType.body, "Def +50  Hp-30", "그 갑옷은 갑옷이라기엔 너무 커다랬다", (int)ItemPlace.shop, 50);
+        Item item5 = new Item("돌(투구)", 0, 20, -20, (int)ItemType.head, "Def +20  Hp-20", "예산을 지키는 탁월한 방법.", (int)ItemPlace.shop, 50);
+        Item item6 = new Item("가죽 갑옷", 10, 5, 0, (int)ItemType.body, "Atk +10  Def +5", "방어력과 경량화의 균형.", (int)ItemPlace.shop, 50);
+        Item item7 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.weapon, "Def +5", "칼2", (int)ItemPlace.shop, 50);
+        Item item8 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.weapon, "Def +5", "칼3", (int)ItemPlace.shop, 50);
+        Item item9 = new Item("무쇠 갑옷", 0, 5, 0, (int)ItemType.weapon, "Def +5", "칼4", (int)ItemPlace.shop, 50);
         //딕셔너리
-        inventory.Add(1,item1);
-        inventory.Add(2,item2);
+        inventory.Add(1, item1);
+        inventory.Add(2, item2);
         shop.Add(1, item1);
         shop.Add(2, item2);
         shop.Add(3, item3);
@@ -45,9 +44,6 @@ internal class Program
         shop.Add(7, item7);
         shop.Add(8, item8);
         shop.Add(9, item9);
-  
-
-
         Startsetting();
         Village();
     }
@@ -60,7 +56,7 @@ internal class Program
         Console.WriteLine("경비병 : 스파르타 마을에 오신걸 환영합니다.");
         Console.WriteLine("당신의 이름은 무엇인가요?");
         string playerName = Console.ReadLine();
-        player= new Character(1, playerName, "전사", 10, 5, 100, 1500);
+        player = new Character(1, playerName, "전사", 10, 5, 100, 1500);
 
         Console.WriteLine("1. 입장");
         Console.Write(">>");
@@ -69,7 +65,7 @@ internal class Program
 
     }
 
-    static int CheckNumber(int big) 
+    static int CheckNumber(int big)
     {
         string input = Console.ReadLine();
         int number;
@@ -99,7 +95,7 @@ internal class Program
         Console.WriteLine("원하시는 행동을 입력해주세요");
         Console.Write(">>");
         int number = CheckNumber(4);
-        switch(number) 
+        switch (number)
         {
             case 1:
                 Status();
@@ -118,27 +114,30 @@ internal class Program
 
     private static void ShopShow(Dictionary<int, Item> shop)
     {
-        foreach (KeyValuePair<int, Item> item2 in shop)
-        {
-            Console.WriteLine("이름{0} 효과 {1} 설명{2}", item2.Value.Name, item2.Value.Effect, item2.Value.Speedweagun);
-        }
+
         //for (int i = 1; i < inventory.Count+1; i++) 
         //{
         //    Console.WriteLine( "이름{0} 효과 {1} 설명{2}", item[i].Name, item[i].Effect , item[i].Speedweagun);
         //}
-
         Console.Clear();
         Console.WriteLine("아이템목록입니다 ");
         Console.WriteLine();
         Console.WriteLine("0. 나가기");
-
+        int i = 1;
+        foreach (KeyValuePair<int, Item> item2 in shop)
+        {
+            Console.WriteLine("{0}. {1} {2} {3}구매 / 판매",i, item2.Value.Name, item2.Value.Effect, item2.Value.Speedweagun);
+            ++i;
+        }
+        Console.WriteLine();
+        Console.Write(">>");
 
         int count = shop.Count + 1;
 
-        for (int i = 1; i < shop.Count + 1; i++)
-        {
-            Console.WriteLine("{0}. {1} 구매 / 판매", i, shop[i].Name);
-        }
+        //for (int i = 1; i < shop.Count + 1; i++)
+        //{
+        //    Console.WriteLine("{0}. {1} 구매 / 판매", i, shop[i].Name);
+        // }
         int number = CheckNumber(count);
 
 
@@ -188,7 +187,7 @@ internal class Program
     }
 
 
-static void Status()
+    static void Status()
     {
         Console.Clear();
 
@@ -214,7 +213,7 @@ static void Status()
     }
     static void InventoryShow(Dictionary<int, Item> item)
     {
-        
+
 
         //for (int i = 1; i < inventory.Count+1; i++) 
         //{
@@ -229,13 +228,13 @@ static void Status()
         int i = 1;
         foreach (KeyValuePair<int, Item> item2 in item)
         {
-            Console.WriteLine("{0}. {1} {2} {3}", i, item2.Value.Name.PadRight(10), item2.Value.Effect.PadRight(20), item2.Value.Speedweagun.PadRight(30));
+            Console.WriteLine("{0}. {1}  {2}  {3}  장착/해제", i, item2.Value.Name.PadRight(20- item2.Value.Name.Length), item2.Value.Effect.PadRight(20- item2.Value.Effect.Length), item2.Value.Speedweagun.PadRight(40-item2.Value.Speedweagun.Length));
             ++i;
         }
 
         Console.Write(">>");
 
-        int count = item.Count+1;
+        int count = item.Count + 1;
         //for (int i = 1; i < item.Count+1; i++)
         //{
         //   Console.WriteLine("{0}. {1} 장착/해제", i, item[i].Name);
@@ -291,30 +290,30 @@ static void Status()
 
 
 
-public class Character  // 레벨 이름  직업 공격력 방어력 체력 골드
-{
-    public int Level;
-    public string Name { get; set; }
-    public string Job  { get; set; }
-    public int Atk { get; set; }
-    public int Def { get; set; }
-    public int Hp { get; set; }
-    public int Gold { get; set; }
-
-    public bool typeWeapon=false;
-    public bool typehead = false;
-    public bool typebody = false;
-    public Character(int level, string name, string job, int atk, int def, int hp, int gold)
+    public class Character  // 레벨 이름  직업 공격력 방어력 체력 골드
     {
-        Level = level;
-        Name = name;
-        Job = job;
-        Atk = atk;
-        Def = def;
-        Hp = hp;
-        Gold = gold;
+        public int Level;
+        public string Name { get; set; }
+        public string Job { get; set; }
+        public int Atk { get; set; }
+        public int Def { get; set; }
+        public int Hp { get; set; }
+        public int Gold { get; set; }
+
+        public bool typeWeapon = false;
+        public bool typehead = false;
+        public bool typebody = false;
+        public Character(int level, string name, string job, int atk, int def, int hp, int gold)
+        {
+            Level = level;
+            Name = name;
+            Job = job;
+            Atk = atk;
+            Def = def;
+            Hp = hp;
+            Gold = gold;
+        }
     }
-}
 
     public class Item
     {
@@ -393,7 +392,7 @@ public class Character  // 레벨 이름  직업 공격력 방어력 체력 골�
                     player.Atk += Item.Atk;
                     player.Def += Item.Def;
                     player.Hp += Item.Hp;
-                    
+
                     Item.Name = "[E]" + Item.Name;
                     checkE = !checkE;
                 }
@@ -403,7 +402,7 @@ public class Character  // 레벨 이름  직업 공격력 방어력 체력 골�
                     player.Atk += Item.Atk;
                     player.Def += Item.Def;
                     player.Hp += Item.Hp;
-                    
+
                     Item.Name = "[E]" + Item.Name;
                     checkE = !checkE;
                 }
@@ -413,7 +412,7 @@ public class Character  // 레벨 이름  직업 공격력 방어력 체력 골�
                     player.Atk += Item.Atk;
                     player.Def += Item.Def;
                     player.Hp += Item.Hp;
-                    
+
                     Item.Name = "[E]" + Item.Name;
                     checkE = !checkE;
                 }
@@ -459,7 +458,7 @@ public class Character  // 레벨 이름  직업 공격력 방어력 체력 골�
                     Console.WriteLine("");
                     Console.Write(">>확인");
                     Console.Read();
-                    ItemPlace =2;
+                    ItemPlace = 2;
 
                 }
                 else if (player.Gold >= Item.Gold) { }
