@@ -9,6 +9,9 @@ internal class Program
 {
     static Dictionary<int, Item> inventory = new Dictionary<int, Item>();
     static Dictionary<int, Item> shop = new Dictionary<int, Item>();
+
+    static List<Item> inventorylist = new List<Item>();
+    static List<Item> ShopList = new List<Item>();
     private static Character player;
     public enum ItemType
     {
@@ -34,6 +37,20 @@ internal class Program
         Item item9 = new Item("삼중 면도날 ", 20, 0, 0, (int)ItemType.weapon, "Atk +20", "면도날에 있어 더 이상 개선의 여지는 없는것 처럼 보였다", (int)ItemPlace.shop, 200,9);
         Item item10 = new Item("오중 면도날 ", 30, 0, 0, (int)ItemType.weapon, "Atk +30", "누가 면도날의 갯수가 4개에서 5개로 늘어날 수 있다고 상상이나 했을까?", (int)ItemPlace.shop, 300,10);
         //딕셔너리
+        
+        inventorylist.Add(item1);
+        inventorylist.Add(item2);
+        ShopList.Add(item1);
+        ShopList.Add(item2);
+        ShopList.Add(item3);
+        ShopList.Add(item4);
+        ShopList.Add(item5);
+        ShopList.Add(item6);
+        ShopList.Add(item7);
+        ShopList.Add(item8);
+        ShopList.Add(item9);
+        ShopList.Add(item10);
+        //.FindIndex(a => a.Code("1")
 
         inventory.Add(1, item1);
         inventory.Add(2, item2);
@@ -111,14 +128,28 @@ internal class Program
                 InventoryShow(inventory);
                 break;
             case 3:
-                ShopShow(shop);
+                ShopShow(shop,inventorylist);
                 break;
+            default:
+                try
+                {
+                    Console.WriteLine("입력값이 다릅니다");
+                    Console.ReadLine();
+                    Village();
+                    break;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                    break;
+                }
         }
 
 
     }
 
-    private static void ShopShow(Dictionary<int, Item> shop)
+    private static void ShopShow(Dictionary<int, Item> shop, List<Item> inventorylist)
     {
         //for (int i = 1; i < inventory.Count+1; i++) 
         //{
@@ -159,13 +190,26 @@ internal class Program
                 Village();
                 break;
             case 1:
-                shop[number].SellBuy(shop[number], number);
-                ShopShow(shop);
+                shop[number].SellBuy(shop[number], number,inventorylist);
+                ShopShow(shop,inventorylist);
                 break;
             default:
-                shop[number].SellBuy(shop[number], number);
-                ShopShow(shop);
-                break;
+                try
+                {
+                    shop[number].SellBuy(shop[number], number, inventorylist);
+                    ShopShow(shop, inventorylist);
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("입력 값이 다릅니다");
+                    Console.ReadLine();
+                    ShopShow(shop, inventorylist);
+                    break;
+                    throw;
+                }
+
+
            
         }
 
@@ -240,16 +284,19 @@ internal class Program
                 InventoryShow(item);
                 break;
             default :
-                if (inventory[number]!=null) { 
-                inventory[number].EunE(inventory[number], player);
-                InventoryShow(item);
-                break;
-                }
-                else 
+                try
                 {
-                    Console.WriteLine("입력 값이 다릅니다");
+                    inventory[number].EunE(inventory[number], player);
                     InventoryShow(item);
                     break;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("입력 값이 다릅니다");
+                    Console.ReadLine();
+                    InventoryShow(item);
+                    break;
+                    throw;
                 }
 
 
@@ -420,7 +467,7 @@ internal class Program
             Gold = gold;
             Code = code;
         }
-        public void SellBuy(Item Item, int number)
+        public void SellBuy(Item Item, int number, List<Item> inventorylist)
         {
             if (Item.checkE)
             {
@@ -434,6 +481,7 @@ internal class Program
                 if (ItemPlace == 1)//소유
                 {
                     inventory.Remove(Item.Code);
+                    inventorylist.Remove(Item);
                     player.Gold += Item.Gold / 2;
                     Console.WriteLine($"{Item.Name}을 판매하여 {Item.Gold / 2}원을 획득하였습니다. ");
                     Console.WriteLine($"{player.Gold}을 보유중 입니다.");
@@ -447,6 +495,7 @@ internal class Program
                 {
                     player.Gold -= Item.Gold;
                     inventory.Add(Item.Code, Item);
+                    inventorylist.Add(Item);
 
                     Console.WriteLine($"{Item.Name}을 구매하였습니다. ");
                     Console.WriteLine($"{player.Gold}을 보유중 입니다.");
