@@ -1,0 +1,15 @@
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.csproj.AssemblyReference.cache
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.AssemblyInfoInputs.cache
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.AssemblyInfo.cs
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.csproj.CoreCompileInputs.cache
+C:\Users\spdla\source\repos\개인과제\개인과제\bin\Debug\net6.0\개인과제.exe
+C:\Users\spdla\source\repos\개인과제\개인과제\bin\Debug\net6.0\개인과제.deps.json
+C:\Users\spdla\source\repos\개인과제\개인과제\bin\Debug\net6.0\개인과제.runtimeconfig.json
+C:\Users\spdla\source\repos\개인과제\개인과제\bin\Debug\net6.0\개인과제.dll
+C:\Users\spdla\source\repos\개인과제\개인과제\bin\Debug\net6.0\개인과제.pdb
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.dll
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\refint\개인과제.dll
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.pdb
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\개인과제.genruntimeconfig.cache
+C:\Users\spdla\source\repos\개인과제\개인과제\obj\Debug\net6.0\ref\개인과제.dll
