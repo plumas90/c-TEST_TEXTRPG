@@ -79,7 +79,7 @@ internal class Program
     {
 
         Console.Clear();
-        Console.WriteLine("경비병 : 스파르타 마을에 오신걸 환영합니다.");
+        Console.WriteLine("당신은 돈을 벌기 위해 무시무시한 던전이 있다는 스파르타 던전으로 향합니다.");
         Console.WriteLine("당신의 이름은 무엇인가요?");
         string playerName = Console.ReadLine();
         player = new Character(1, playerName, "전사", 10, 5, 100, 1500);
@@ -122,6 +122,7 @@ internal class Program
         Console.WriteLine("3. 상점");
         Console.WriteLine("4. 던전");
         Console.WriteLine("5. 여관");
+        Console.WriteLine("6. 집으로(10000G)");
 
         Console.WriteLine("원하시는 행동을 입력해주세요");
         Console.Write(">>");
@@ -144,6 +145,9 @@ internal class Program
             case 5:
                 restShow();
                 break;
+            case 6:
+                gohome();
+                break;
             default: //상점 구현 전까진 체크넘버가 범위외 숫자를 처리해주었으나 버그로 인해 예외 처리를 해주었다 
                 try
                 {
@@ -162,10 +166,53 @@ internal class Program
 
 
     }
+    public static void gohome() 
+    {
+        Console.Clear();
+        if (player.Gold < 10000);
+        {
+            Console.WriteLine("현재 골드로는 떳떳하게 집으로 돌아갈 수 없다.");
+            Console.WriteLine(""); 
+            Console.WriteLine(">>확인");
+            Console.Read();
+        }
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("            $     $$$    ");
+        Console.WriteLine("          $$$$$   $$$    ");
+        Console.WriteLine("         $$$$$$$  $$$    ");
+        Console.WriteLine("       $$$$   $$$$$$$    ");
+        Console.WriteLine("      $$$   $  $$$$$$    ");
+        Console.WriteLine("    $$$$  $$$$$  $$$$    ");
+        Console.WriteLine("   $$$$  $$$$$$$  $$$$   ");
+        Console.WriteLine(" $$$$  $$$$$$$$$$$  $$$$ ");
+        Console.WriteLine("$$$  $$$$$$$$$$$$$$$ $$$$");
+        Console.WriteLine(" $  $$$$$$$$$$$$$$$$$  $ ");
+        Console.WriteLine("    $$$$$$$$$$$$$$$$$    ");
+        Console.WriteLine("    $$$$$$$$$$$$$$$$$    ");
+        Console.WriteLine("    $$$$$$$$$$$$$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$    ");
+        Console.WriteLine("    $$$$$$     $$$$$$   ");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("END. 집으로.");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("플레이 해주셔서 감사합니다.");
+    }
     public static void restShow() // 여관 씬으로 이동 처음 생성시 휴식만 생각하고 만들고 휴식장소를 생각안해서 rest가 된 케이스
     {
         Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Red;   
         Console.WriteLine("[여관]");
+        Console.ResetColor();
         Console.WriteLine("");
         Console.WriteLine("휴식 : 체력 회복 ( 500 G)");
         Console.WriteLine("");
@@ -202,7 +249,9 @@ internal class Program
     public static void dungeonShow()  // 던전입장 
     {
         Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("던전 입장");
+        Console.ResetColor();
         Console.WriteLine("");
         Console.WriteLine("0. 나가기");
         Console.WriteLine("1. 쉬운 던전     ★  | 방어력 5 이상 권장");
@@ -259,7 +308,7 @@ internal class Program
         switch (stage)// 난이도별 변수 설정 쉬움 노말 어려움
         {
             case 1:
-                Console.WriteLine("들어옴체크1");
+                //Console.WriteLine("들어옴체크1");
                 giveMoney = 1000;
                 giveMoney *= pumpkin1;
                 star = "쉬운";
@@ -373,6 +422,7 @@ internal class Program
 
         player.NowHp -= realdamege; // 데미지값이 경우에 따라 다르기에 이친구는 스위치문 후 처리해줌 
             Console.Clear();
+            // 죽음을 함수로 만들까 고민을 했지만 죽는경우가 던전가는경우 밖에 없어서 만들지 않음
             if (player.NowHp <= 0) //죽었을때 체크 
             { 
                 Console.WriteLine($"{realdamege}만큼 피해를 입어 체력이 {player.NowHp}이 되어 정신을 잃었습니다");
@@ -403,9 +453,9 @@ internal class Program
                 Console.WriteLine($"Atk : {player.Def - 2} -> {player.Def}");
             }
         Console.WriteLine($"체력 {player.NowHp + realdamege} -> {player.NowHp}");
-        Console.WriteLine("Gold {0} -> {1}", player.Gold - giveMoney, player.Gold);
          player.Gold += giveMoney;
-         }
+            Console.WriteLine("Gold {0} -> {1}", player.Gold - giveMoney, player.Gold);
+        }
          else 
           {
              Console.WriteLine("실패!");
@@ -436,7 +486,7 @@ internal class Program
                 }
         }
     }
-    public static void rest()
+    public static void rest() //돈이 있다면 체력 회복 
     {
 
         if (player.Gold >= 500)
@@ -464,10 +514,18 @@ internal class Program
         //    Console.WriteLine( "이름{0} 효과 {1} 설명{2}", item[i].Name, item[i].Effect , item[i].Speedweagun);
         //}
         Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("상점");
+        Console.ResetColor();
+        Console.WriteLine("");
         Console.WriteLine("아이템목록입니다. ");
         Console.WriteLine("판매시 구매 가격의 50%로 구매해드립니다. ");
         Console.WriteLine();
         Console.WriteLine("0. 나가기");
+        //for (int i = 1; i < shop.Count + 1; i++) // 깨달음의 흔적 딕셔너리는 키값으로 받기에 for문 사용시 키값 1 키값 3은 존재하나 키값2는 존재하지 않을시 버그 발생
+        //{
+        //    Console.WriteLine("{0}. {1} 구매 / 판매", i, shop[i].Name);
+        // }
         foreach (KeyValuePair<int, Item> item2 in shop)
         {
             if (item2.Value.ItemPlace == 1)//보유체크
@@ -485,14 +543,25 @@ internal class Program
 
         int count = shop.Count + 1;
 
-        //for (int i = 1; i < shop.Count + 1; i++)
-        //{
-        //    Console.WriteLine("{0}. {1} 구매 / 판매", i, shop[i].Name);
-        // }
+
         int number = CheckNumber(count);
 
+        // 다른 스위치 문은 괜찮았으나 여기선 큰 문제가 발생했음
+        // 바로 딕셔너리는 키값과 밸류가 있기에 아이템 첫구매시 키값과 관계없이 
+        // 1. 낡은검 2. 무쇠 갑옷 3. 아이템 이 되나 스위치문에서 3입력을 해도 그아이템이 키값4라면 입력에러가 발생하는것! (원인을 알아내는데도 상당한 시간이투자됨)
 
-        switch (number)
+        //switch (number) 테스트 당시 나가기 제외 몇을 입력하든 넘버로 받기에 유동적으로 대응하는 아름다운 코드라고 생각했었음
+        //{
+        //  case 0:
+        //      Village();
+        //      break;
+        //   defalt:
+        //       shop[number].SellBuy(shop[number], number, inventorylist);
+        //       ShopShow(shop, inventorylist);
+        //        break;
+        //}
+
+                switch (number)
         {
             case 0:
                 Village();
@@ -501,7 +570,7 @@ internal class Program
                 shop[number].SellBuy(shop[number], number,inventorylist);
                 ShopShow(shop,inventorylist);
                 break;
-            default:
+            default: // 위 코드의 수정판으로 번호외 입력시 try catch로 에러로 인한 꺼짐을 차단함 잘한건지 모르겠음
                 try
                 {
                     shop[number].SellBuy(shop[number], number, inventorylist);
@@ -524,7 +593,7 @@ internal class Program
     }
 
 
-    static void Status()
+    static void Status() // 생각해보니 이친구도 statusshow가 맞는이름인듯함
     {
         Console.Clear();
 
@@ -533,7 +602,7 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine($"Lv.{player.Level}");
         Console.WriteLine($"{player.Name}({player.Job})");
-        Console.WriteLine($"공격력 :{player.Atk} (+{player.Atk-10-player.Level*2+2})");
+        Console.WriteLine($"공격력 :{player.Atk} (+{player.Atk-10-player.Level*2+2})");  // 현재 공격력 과 아이템의 공격력을 보여준다
         Console.WriteLine($"방어력 : {player.Def} (+{player.Def-5-player.Level*2+2})");
         Console.WriteLine($"체력 : {player.NowHp}/{player.Hp}");
         Console.WriteLine($"Gold : {player.Gold} G");
@@ -548,14 +617,18 @@ internal class Program
                 break;
         }
     }
-    static void InventoryShow(Dictionary<int, Item> item)
+    static void InventoryShow(Dictionary<int, Item> item) // 아이템을 보여줌 
     {
 
         //for (int i = 1; i < inventory.Count+1; i++) 
         //{
         //    Console.WriteLine( "이름{0} 효과 {1} 설명{2}", item[i].Name, item[i].Effect , item[i].Speedweagun);
         //}
-
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("상점");
+        Console.ResetColor();
+        Console.WriteLine("");
         Console.Clear();
         Console.WriteLine("아이템목록입니다 ");
         Console.WriteLine();
@@ -564,7 +637,7 @@ internal class Program
         foreach (KeyValuePair<int, Item> item2 in item)
         {
             Console.WriteLine("{0}. {1}  {2}  {3}  장착/해제", item2.Value.Code, item2.Value.Name.PadRight(20- item2.Value.Name.Length), item2.Value.Effect.PadRight(30- item2.Value.Effect.Length), item2.Value.Speedweagun.PadRight(40-item2.Value.Speedweagun.Length));
-            
+                                                                    // 결국 스페이스바 와 일반 글자의 크기 조절을 못해 반쪽짜리 정렬이 구현됨
         }
 
         Console.Write(">>");
@@ -627,11 +700,11 @@ internal class Program
         public int NowHp { get; set; }
         public int Gold { get; set; }
 
-        public bool typeWeapon = false;
+        public bool typeWeapon = false; // 아이템슬롯 3개를 표현
         public bool typehead = false;
         public bool typebody = false;
 
-        public void Hpcheck()
+        public void Hpcheck() // 나는 아이템중 최대 체력을 변경시키는 아이템이 있기에 현재 체력이 최대체력보다 높은경우를 방지
         {
             if (player.Hp < player.NowHp)
             {

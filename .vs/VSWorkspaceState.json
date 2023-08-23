@@ -2,14 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\개인과제",
-    "\\개인과제\\bin",
     "\\개인과제\\bin\\Debug",
     "\\개인과제\\bin\\Release",
-    "\\개인과제\\obj",
     "\\개인과제\\obj\\Debug",
     "\\개인과제\\obj\\Debug\\net6.0",
     "\\개인과제\\obj\\Release"
   ],
-  "SelectedNode": "\\개인과제\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
