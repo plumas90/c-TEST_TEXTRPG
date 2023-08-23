@@ -169,14 +169,16 @@ internal class Program
     public static void gohome() 
     {
         Console.Clear();
-        if (player.Gold < 10000);
+        if (player.Gold < 10000)
         {
             Console.WriteLine("현재 골드로는 떳떳하게 집으로 돌아갈 수 없다.");
             Console.WriteLine(""); 
             Console.WriteLine(">>확인");
             Console.Read();
+            Village();
         }
-        Console.WriteLine("");
+        else 
+        {
         Console.WriteLine("");
         Console.WriteLine("            $     $$$    ");
         Console.WriteLine("          $$$$$   $$$    ");
@@ -201,11 +203,10 @@ internal class Program
         Console.WriteLine("    $$$$$$     $$$$$$   ");
         Console.WriteLine("");
         Console.WriteLine("");
-        Console.WriteLine("END. 집으로.");
-        Console.WriteLine("");
-        Console.WriteLine("");
+        Console.WriteLine("END 집으로.");
         Console.WriteLine("");
         Console.WriteLine("플레이 해주셔서 감사합니다.");
+        }
     }
     public static void restShow() // 여관 씬으로 이동 처음 생성시 휴식만 생각하고 만들고 휴식장소를 생각안해서 rest가 된 케이스
     {
@@ -250,7 +251,7 @@ internal class Program
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("던전 입장");
+        Console.WriteLine("[던전 입장]");
         Console.ResetColor();
         Console.WriteLine("");
         Console.WriteLine("0. 나가기");
@@ -259,7 +260,7 @@ internal class Program
         Console.WriteLine("3. 어려운 던전 ★★★| 방어력 17 이상 권장");
         Console.WriteLine($"현재 방어력 : {player.Def}");
         Console.WriteLine("");
-        Console.WriteLine(">>");
+        Console.Write(">>");
         int number = CheckNumber(4);
         switch (number)
         {
@@ -515,7 +516,7 @@ internal class Program
         //}
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("상점");
+        Console.WriteLine("[상점]");
         Console.ResetColor();
         Console.WriteLine("");
         Console.WriteLine("아이템목록입니다. ");
@@ -596,8 +597,11 @@ internal class Program
     static void Status() // 생각해보니 이친구도 statusshow가 맞는이름인듯함
     {
         Console.Clear();
-
-        Console.WriteLine("상태보기");
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine("[상태창]");
+        Console.ResetColor();
+        Console.WriteLine("");
         Console.WriteLine("캐릭터의 정보를 표시합니다.");
         Console.WriteLine();
         Console.WriteLine($"Lv.{player.Level}");
@@ -625,12 +629,11 @@ internal class Program
         //    Console.WriteLine( "이름{0} 효과 {1} 설명{2}", item[i].Name, item[i].Effect , item[i].Speedweagun);
         //}
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("상점");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("[인벤토리]");
         Console.ResetColor();
         Console.WriteLine("");
-        Console.Clear();
-        Console.WriteLine("아이템목록입니다 ");
+        Console.WriteLine("아이템목록 입니다. ");
         Console.WriteLine();
 
         Console.WriteLine("0. 나가기");
